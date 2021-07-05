@@ -23,7 +23,7 @@ setuptools.setup(
     setup_requires=['setuptools_scm'],
     url='https://github.com/pollination/honeybee-vtk',
     project_urls={
-        'icon': 'https://raw.githubusercontent.com/ladybug-tools/artwork/master/icons_bugs/grasshopper_tabs/Honeybee.png',
+        'icon': 'assets/logo/vtk.png',
         'docker': 'https://hub.docker.com/r/ladybugtools/honeybee-vtk'
     },
     description='Honeybee vtk plugin for Pollination.',
