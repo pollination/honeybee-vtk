@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pollination_dsl.function import Function, command, Inputs, Outputs
+from pydantic.typing import IntStr
 
 
 @dataclass
@@ -33,11 +34,16 @@ class ExportImages(Function):
     )
 
     image_height = Inputs.int(
-        description='height of images in pixels.',
+        description='Height of images in pixels.',
         default=2500
     )
 
-    display_mode_model = Inputs.str(
+    background_color = Inputs.str(
+        description='Background color for the images as a string of rgb values.',
+        default='255 255 255'
+    )
+
+    model_display_mode = Inputs.str(
         description='Set display mode fro the model.',
         default='shaded'
     )
@@ -47,15 +53,9 @@ class ExportImages(Function):
         default='ignore'
     )
 
-    display_mode_grid = Inputs.str(
+    grid_display_mode = Inputs.str(
         description='Set display mode for the Sensorgrids.',
-        default='shaded'
-    )
-
-    view_path = Inputs.path(
-        description='File path to the radiance view file.',
-        path='view_file',
-        default='.'
+        default='surfacewithedges'
     )
 
     config_path = Inputs.path(
@@ -66,10 +66,12 @@ class ExportImages(Function):
 
     @command
     def export_images(self):
-        return 'honeybee-vtk input.hbjson output_folder {{self.name}}'\
-            ' {{self.image_type}} {{self.image_width}} {{self.image_height}}'\
-            ' {{self.display_model_mode}} {{self.grid_options}}'\
-            ' {{self.display_mode_grid}} view_file config.json'
+        return 'honeybee-vtk --name {{self.name}} --image-type {{self.image_type}}'\
+            ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
+            ' --background-color {{self.background_color}} --model-display-mode'\
+            '{{self.display_model_mode}} --grid-options {{self.grid_options}}'\
+            ' --grid-display-mode {{self.display_mode_grid}} --config config.json'\
+            'input.hbjson --folder target_folder'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
