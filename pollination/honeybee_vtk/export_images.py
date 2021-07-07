@@ -17,15 +17,9 @@ class ExportImages(Function):
         default='Camera'
     )
 
-    folder = Inputs.folder(
-        description='Target folder where the images will be written.',
-        path='output_folder',
-        default='.'
-    )
-
     image_type = Inputs.str(
         description='Choose the type of image file.',
-        default='jpg'
+        default='png'
     )
 
     image_width = Inputs.int(
@@ -44,7 +38,7 @@ class ExportImages(Function):
     )
 
     model_display_mode = Inputs.str(
-        description='Set display mode fro the model.',
+        description='Set display mode for the model.',
         default='shaded'
     )
 
@@ -61,7 +55,8 @@ class ExportImages(Function):
     config_path = Inputs.path(
         description='File path to the config json file which can be used to mount'
         'simulation data on HBJSON.',
-        path='config.json'
+        path='config.json',
+        optional=True
     )
 
     @command
