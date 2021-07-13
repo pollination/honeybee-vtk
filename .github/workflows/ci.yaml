@@ -96,7 +96,7 @@
 #       - name: deploy to production
 #         run: |
 #           queenbee
-#           pollination dsl push pollination-honeybee-vtk -e https://api.pollination.cloud
+#           pollination dsl push pollination-honeybee-vtk -e https://api.pollination.cloud -src https://api.pollination.cloud/registries --push-dependencies
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #           QB_POLLINATION_TOKEN: ${{ secrets.POLLINATION_LADYBUGBOT_TOKEN }}
