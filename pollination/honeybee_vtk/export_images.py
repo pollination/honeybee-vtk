@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from pollination_dsl.function import Function, command, Inputs, Outputs
-from pydantic.typing import IntStr
 
 
 @dataclass
