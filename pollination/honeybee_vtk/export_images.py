@@ -17,8 +17,11 @@ class ExportImages(Function):
     )
 
     image_type = Inputs.str(
-        description='Choose the type of image file.',
-        default='png'
+        description='Choose the type of image file.'
+        'Choose from: png, jpg, ps, tiff, bmp, pnm.',
+        default='png',
+        spec={'type': 'string',
+              'enum': ['png', 'jpg', 'ps', 'tiff', 'bmp', 'pnm']}
     )
 
     image_width = Inputs.int(
@@ -37,18 +40,27 @@ class ExportImages(Function):
     )
 
     model_display_mode = Inputs.str(
-        description='Set display mode for the model.',
-        default='shaded'
+        description='Set display mode for the model.'
+        'Choose from: shaded, surface, surfacewithedges, wireframe, points.',
+        default='shaded',
+        spec={'type': 'string',
+              'enum': ['shaded', 'surface', 'surfacewithedges', 'wireframe', 'points']}
     )
 
     grid_options = Inputs.str(
-        description='Export sensor grids as either points or meshes.',
-        default='ignore'
+        description='Export sensor grids as either points or meshes.'
+        ' Choose from: ignore, points, meshes. Choosing ignore will not load grids.',
+        default='ignore',
+        spec={'type': 'string',
+              'enum': ['ignore', 'points', 'meshes']}
     )
 
     grid_display_mode = Inputs.str(
-        description='Set display mode for the Sensorgrids.',
-        default='surfacewithedges'
+        description='Set display mode for the Sensorgrids.'
+        'Choose from: shaded, surface, surfacewithedges, wireframe, points',
+        default='shaded',
+        spec={'type': 'string',
+              'enum': ['shaded', 'surface', 'surfacewithedges', 'wireframe', 'points']}
     )
 
     config_path = Inputs.path(
@@ -60,12 +72,12 @@ class ExportImages(Function):
 
     @command
     def export_images(self):
-        return 'honeybee-vtk --name {{self.name}} --image-type {{self.image_type}}'\
-            ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
-            ' --background-color {{self.background_color}} --model-display-mode'\
-            '{{self.display_model_mode}} --grid-options {{self.grid_options}}'\
-            ' --grid-display-mode {{self.display_mode_grid}} --config config.json'\
-            'input.hbjson --folder target_folder'
+        return 'honeybee-vtk export-images --name {{self.name}} --image-type'\
+            ' {{self.image_type}} --image-width {{self.image_width}} --image-height'\
+            ' {{self.image_height}} --background-color {{self.background_color}}'\
+            ' --model-display-mode {{self.display_model_mode}} --grid-options'\
+            ' {{self.grid_options}} --grid-display-mode {{self.display_mode_grid}}'\
+            ' --config config.json input.hbjson --folder target_folder'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',

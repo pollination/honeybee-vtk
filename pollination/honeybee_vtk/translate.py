@@ -17,18 +17,26 @@ class Translate(Function):
     )
 
     file_type = Inputs.str(
-        description='Choose the type of files to export from "vtkjs", "vtp", "vtk"',
-        default='vtkjs'
+        description='Choose the type of files to export from: vtkjs, vtp, vtk.',
+        default='vtkjs',
+        spec={'type': 'string',
+              'enum': ['vtkjs', 'vtp', 'vtk']}
     )
 
     display_mode = Inputs.str(
-        description='Set display mode for the model.',
-        default='shaded'
+        description='Set display mode for the model.'
+        ' Choose from: shaded, surface, surfacewithedges, wireframe, points.',
+        default='shaded',
+        spec={'type': 'string',
+              'enum': ['shaded', 'surface', 'surfacewithedges', 'wireframe', 'points']}
     )
 
     grid_options = Inputs.str(
-        description='Export sensor grids as either points or meshes.',
-        default='ignore'
+        description='Export sensor grids as either points or meshes.'
+        ' Choose from: ignore, points, meshes. Choosing ignore will not load grids.',
+        default='ignore',
+        spec={'type': 'string',
+              'enum': ['ignore', 'points', 'meshes']}
     )
 
     config_path = Inputs.path(
@@ -39,9 +47,10 @@ class Translate(Function):
     )
 
     @command
-    def export_images(self):
-        return 'honeybee-vtk --name {{self.name}} --file-type {{self.file_type}}'\
-            ' --display-mode {{self.display_mode}} --grid-options {{self.grid_options}}'\
+    def translate_model(self):
+        return 'honeybee-vtk translate --name {{self.name}} --file-type'\
+            ' {{self.file_type}} --display-mode {{self.display_mode}}'\
+            ' --grid-options {{self.grid_options}}'\
             ' --config config.json input.hbjson --folder target_folder'
 
     images = Outputs.folder(
