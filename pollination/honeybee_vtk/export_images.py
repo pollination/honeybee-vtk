@@ -70,8 +70,8 @@ class ExportImages(Function):
         return 'honeybee-vtk export-images --image-type' \
             ' {{self.image_type}} --image-width {{self.image_width}} --image-height' \
             ' {{self.image_height}} --background-color {{self.background_color}}' \
-            ' --model-display-mode {{self.display_model_mode}} --grid-options' \
-            ' {{self.grid_options}} --grid-display-mode {{self.display_mode_grid}}' \
+            ' --model-display-mode {{self.model_display_mode}} --grid-options' \
+            ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}' \
             ' --config config.json input.hbjson --folder target_folder'
 
     images = Outputs.folder(
