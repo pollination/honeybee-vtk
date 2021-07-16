@@ -20,13 +20,15 @@ class ExportImages(Function):
     )
 
     image_width = Inputs.int(
-        description='Width of images in pixels.',
-        default=2500
+        description='Width of images in pixels. If not set, x dimension of view will be'
+        ' used.',
+        default=0
     )
 
     image_height = Inputs.int(
-        description='Height of images in pixels.',
-        default=2500
+        description='Height of images in pixels.If not set, y dimension of view will be'
+        ' used.',
+        default=0
     )
 
     background_color = Inputs.str(
