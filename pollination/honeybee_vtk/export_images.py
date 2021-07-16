@@ -11,11 +11,6 @@ class ExportImages(Function):
         path='input.hbjson'
     )
 
-    name = Inputs.str(
-        description='Name of image files.',
-        default='Camera'
-    )
-
     image_type = Inputs.str(
         description='Choose the type of image file.'
         'Choose from: png, jpg, ps, tiff, bmp, pnm.',
@@ -72,11 +67,11 @@ class ExportImages(Function):
 
     @command
     def export_images(self):
-        return 'honeybee-vtk export-images --name {{self.name}} --image-type'\
-            ' {{self.image_type}} --image-width {{self.image_width}} --image-height'\
-            ' {{self.image_height}} --background-color {{self.background_color}}'\
-            ' --model-display-mode {{self.display_model_mode}} --grid-options'\
-            ' {{self.grid_options}} --grid-display-mode {{self.display_mode_grid}}'\
+        return 'honeybee-vtk export-images --image-type' \
+            ' {{self.image_type}} --image-width {{self.image_width}} --image-height' \
+            ' {{self.image_height}} --background-color {{self.background_color}}' \
+            ' --model-display-mode {{self.display_model_mode}} --grid-options' \
+            ' {{self.grid_options}} --grid-display-mode {{self.display_mode_grid}}' \
             ' --config config.json input.hbjson --folder target_folder'
 
     images = Outputs.folder(
