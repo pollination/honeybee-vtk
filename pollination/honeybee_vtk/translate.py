@@ -48,9 +48,9 @@ class Translate(Function):
 
     @command
     def translate_model(self):
-        return 'honeybee-vtk translate --name {{self.name}} --file-type'\
-            ' {{self.file_type}} --display-mode {{self.display_mode}}'\
-            ' --grid-options {{self.grid_options}}'\
+        return 'honeybee-vtk translate --name {{self.name}} --file-type' \
+            ' {{self.file_type}} --display-mode {{self.display_mode}}' \
+            ' --grid-options {{self.grid_options}}' \
             ' --config config.json input.hbjson --folder target_folder'
 
     images = Outputs.folder(
