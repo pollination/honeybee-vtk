@@ -53,7 +53,7 @@ class Translate(Function):
             ' --grid-options {{self.grid_options}}' \
             ' --config config.json input.hbjson --folder target_folder'
 
-    images = Outputs.folder(
+    files = Outputs.folder(
         description='Folder location where the files are exported.',
         path='target_folder'
     )
