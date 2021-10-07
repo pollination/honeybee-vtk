@@ -16,7 +16,7 @@ class Config(Function):
     )
 
     @command
-    def translate_model(self):
+    def write_config(self):
         return 'honeybee-vtk config input.json --name {{self.name}}'\
             ' --folder-path target_folder'
 
