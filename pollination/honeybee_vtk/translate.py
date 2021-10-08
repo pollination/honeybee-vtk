@@ -42,13 +42,13 @@ class Translate(Function):
     config_path = Inputs.file(
         description='File path to the config json file which can be used to mount'
         'simulation data on HBJSON.',
-        path='data/config.json',
+        path='input_data/config.json',
         optional=True
     )
 
     data = Inputs.folder(
         description='Input data that works with config file.',
-        path='data', optional=True
+        path='input_data', optional=True
     )
 
     @command
@@ -56,7 +56,7 @@ class Translate(Function):
         return 'honeybee-vtk translate --name {{self.name}} --file-type' \
             ' {{self.file_type}} --display-mode {{self.display_mode}}' \
             ' --grid-options {{self.grid_options}}' \
-            ' --config data/config.json input.hbjson --folder target_folder'
+            ' --config input_data/config.json input.hbjson --folder target_folder'
 
     output_file = Outputs.file(
         description='Created file.',
