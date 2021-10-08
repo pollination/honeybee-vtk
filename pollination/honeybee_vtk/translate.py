@@ -39,11 +39,16 @@ class Translate(Function):
               'enum': ['ignore', 'points', 'meshes']}
     )
 
-    config_path = Inputs.path(
+    config_path = Inputs.file(
         description='File path to the config json file which can be used to mount'
         'simulation data on HBJSON.',
-        path='config.json',
+        path='data/config.json',
         optional=True
+    )
+
+    data = Inputs.folder(
+        description='Input data that works with config file.',
+        path='data', optional=True
     )
 
     @command
@@ -51,9 +56,9 @@ class Translate(Function):
         return 'honeybee-vtk translate --name {{self.name}} --file-type' \
             ' {{self.file_type}} --display-mode {{self.display_mode}}' \
             ' --grid-options {{self.grid_options}}' \
-            ' --config config.json input.hbjson --folder target_folder'
+            ' --config data/config.json input.hbjson --folder target_folder'
 
-    files = Outputs.folder(
-        description='Folder location where the files are exported.',
-        path='target_folder'
+    output_file = Outputs.file(
+        description='Created file.',
+        path='target_folder/{{self.name}}.{{self.file_type}}'
     )
