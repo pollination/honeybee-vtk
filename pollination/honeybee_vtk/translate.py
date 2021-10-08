@@ -39,15 +39,8 @@ class Translate(Function):
               'enum': ['ignore', 'points', 'meshes']}
     )
 
-    config_path = Inputs.file(
-        description='File path to the config json file which can be used to mount'
-        'simulation data on HBJSON.',
-        path='input_data/config.json',
-        optional=True
-    )
-
     data = Inputs.folder(
-        description='Input data that works with config file.',
+        description='Input data folder. This folder must include a config.json file',
         path='input_data', optional=True
     )
 
