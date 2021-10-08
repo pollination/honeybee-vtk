@@ -4,7 +4,7 @@ from pollination_dsl.function import Function, command, Inputs, Outputs
 
 @dataclass
 class Config(Function):
-    """Write a config file to be consumed by honeybee-vtk."""
+    """Write a config file to be consumed by other commands of honeybee-vtk."""
 
     input_file = Inputs.file(
         description='Path to the input json file.',
