@@ -10,17 +10,12 @@ class Config(Function):
         description='Path to the input json file.',
         path='input.json'
     )
-    name = Inputs.str(
-        description='Name of the config file.',
-        default='config'
-    )
 
     @command
     def write_config(self):
-        return 'honeybee-vtk config input.json --name {{self.name}}'\
-            ' --folder-path target_folder'
+        return 'honeybee-vtk config input.json --name config --folder-path .'
 
-    config = Outputs.folder(
-        description='Folder location where the config json is written.',
-        path='target_folder'
+    config = Outputs.file(
+        description='Config.json file.',
+        path='config.json'
     )
