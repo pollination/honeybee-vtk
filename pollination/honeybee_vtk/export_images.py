@@ -89,17 +89,19 @@ class ExportImages(Function):
     )
 
     text_height = Inputs.int(
-        description='Height of the text in pixels.',
+        description='The height of the text in pixels for the text that will be'
+        ' added to the image of a grid.',
         default=15,
     )
 
     text_color = Inputs.str(
-        description='Set the color of the text to be added to the images.',
+        description='The text color of the text that will added to the image of'
+        ' a grid.',
         default='0 0 0',
     )
 
     text_position = Inputs.str(
-        description='Set the position of the text to be added to the images. This'
+        description='The position of the text to be added to the images. This'
         ' setting is applied at the lower left point of the text. (0,0) will give you'
         ' the lower left corner of the image. (1,1) will give you the upper right'
         ' corner of the image.',
@@ -107,7 +109,8 @@ class ExportImages(Function):
     )
 
     text_bold = Inputs.str(
-        description='A flag to indicate whether to make the text bold or not.',
+        description='A flag to indicate whether to make the text bold or not for the text'
+        ' that will be added to the image of a grid.',
         default='text-normal',
         spec={'type': 'string', 'enum': ['text-bold', 'text-normal']}
     )
