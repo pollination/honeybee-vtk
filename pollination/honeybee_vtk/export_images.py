@@ -85,6 +85,7 @@ class ExportImages(Function):
     text = Inputs.str(
         description='Text to be displayed on an image of a grid. This will put this'
         ' same text on all of the images.',
+        default='',
         optional=True
     )
 
