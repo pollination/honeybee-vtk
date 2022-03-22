@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from pollination_dsl.function import Function, command, Inputs, Outputs
+from pyrsistent import optional
 from queenbee.io.common import ItemType
 
 
@@ -93,12 +94,14 @@ class ExportImages(Function):
         description='The height of the text in pixels for the text that will be'
         ' added to the image of a grid.',
         default=15,
+        optional=True
     )
 
     text_color = Inputs.str(
         description='The text color of the text that will added to the image of'
         ' a grid.',
         default='0 0 0',
+        optional=True
     )
 
     text_position = Inputs.str(
@@ -107,13 +110,15 @@ class ExportImages(Function):
         ' the lower left corner of the image. (1,1) will give you the upper right'
         ' corner of the image.',
         default='0.05 0.05',
+        optional=True
     )
 
     text_bold = Inputs.str(
         description='A flag to indicate whether to make the text bold or not for the text'
         ' that will be added to the image of a grid.',
         default='text-normal',
-        spec={'type': 'string', 'enum': ['text-bold', 'text-normal']}
+        spec={'type': 'string', 'enum': ['text-bold', 'text-normal']},
+        optional=True
     )
 
     time_step_file_name = Inputs.str(
