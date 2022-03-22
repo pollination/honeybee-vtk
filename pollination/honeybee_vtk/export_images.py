@@ -149,6 +149,7 @@ class ExportImages(Function):
 
     gif_name = Inputs.str(
         description='File name for the gif file without its extension.',
+        default='output',
         optional=True
     )
 
