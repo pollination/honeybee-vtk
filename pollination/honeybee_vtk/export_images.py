@@ -117,6 +117,7 @@ class ExportImages(Function):
 
     time_step_file_name = Inputs.str(
         description='File name for the timestep file without its extension.',
+        default='',
         optional=True
     )
 
