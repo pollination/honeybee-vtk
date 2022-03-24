@@ -192,7 +192,7 @@ class ExportImages(Function):
             ' --periods-file periods.json --{{self.flat_gradient}}'\
             ' --{{self.transparent_images}} --gif-name {{self.gif_name}}'\
             ' --gif-duration {{self.gif_duration}}'\
-            '--gif-loop-count {{self.gif_loop_count}} --gif-linger-last-frame'\
+            ' --gif-loop-count {{self.gif_loop_count}} --gif-linger-last-frame'\
             ' {{self.gif_linger_last_frame}} --image-transparency'\
             ' {{self.image_transparency}} input.hbjson --folder target_folder'
 
