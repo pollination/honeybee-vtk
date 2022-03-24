@@ -82,7 +82,7 @@ class ExportImages(Function):
         items_type=ItemType.String
     )
 
-    text = Inputs.str(
+    text_content = Inputs.str(
         description='Text to be displayed on an image of a grid. This will put this'
         ' same text on all of the images.',
         default='',
@@ -185,7 +185,7 @@ class ExportImages(Function):
             ' --model-display-mode {{self.model_display_mode}} --grid-options'\
             ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
             ' --config config.json --selection {{self.selection}}'\
-            ' --grid-filter {{self.grid_filter}} --text {{self.text}}'\
+            ' --grid-filter {{self.grid_filter}} --text-content {{self.text_content}}'\
             ' --text-height {{self.text_height}} --text-color {{self.text_color}}'\
             ' --text-position {{self.text_position}} --{{self.text_bold}}'\
             ' --time-step-file-name {{self.time_step_file_name}}'\
