@@ -6,8 +6,9 @@ from pollination_dsl.function import Function, command, Inputs, Outputs
 class Gif(Function):
     """Export a GIF from a folder of time step images."""
 
-    time_step_images_folder = Inputs.folder(
-        description='The folder containing the time step images.',
+    input_folder = Inputs.folder(
+        description='The folder containing the time step images using the'
+        ' time-step-images sub-command of the honeybee-vtk export command.',
         required=True,
         path='time_step_images'
     )
@@ -22,7 +23,7 @@ class Gif(Function):
 
     duration = Inputs.int(
         description='The duration of each frame in the GIF in milliseconds. Defaults to'
-        ' 100ms.',
+        ' 1000ms.',
         default=1000
     )
 
@@ -37,7 +38,7 @@ class Gif(Function):
         default=3
     )
 
-    @ command
+    @command
     def gif(self):
         return 'honeybee-vtk post-process gif ./time_step_images --folder target_folder'\
             ' --transparency {{self.transparency}} --duration {{self.duration}}'\
@@ -67,7 +68,7 @@ class TransparentImages(Function):
         default=0.5,
     )
 
-    @ command
+    @command
     def gif(self):
         return 'honeybee-vtk post-process transparent-images ./time_step_images'\
             ' --folder target_folder --transparency {{self.transparency}}'
