@@ -206,8 +206,8 @@ class TimeStepImages(Function):
         ' timestep information that is added to the bottom center of the image. If the'
         ' exported images are going to be post-processed, it is advised to not label'
         ' the images.',
-        default='do-not-label-images',
-        spec={'type': 'string', 'enum': ['label-images', 'do-not-label-images']}
+        default='no-label',
+        spec={'type': 'string', 'enum': ['label', 'no-label']}
     )
 
     image_width = Inputs.int(
@@ -227,6 +227,7 @@ class TimeStepImages(Function):
         return 'honeybee-vtk export timestep-images input.hbjson --folder target_folder'\
             ' --config config.json --time-step-file time_step_data.json'\
             ' --grids-filter {{self.grids_filter}} --{{self.full_match}}'\
+            ' --{{self.label_images}}'\
             ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
 
     images = Outputs.folder(
