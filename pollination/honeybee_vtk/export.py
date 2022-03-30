@@ -20,13 +20,13 @@ class ModelImages(Function):
     )
 
     image_width = Inputs.int(
-        description='Width of images in pixels. If not set, x dimension of a radiance'
+        description='Width of images in pixels. If set to 0, x dimension of a radiance'
         ' view will be used.',
         default=0
     )
 
     image_height = Inputs.int(
-        description='Height of images in pixels.If not set, y dimension of a radiance'
+        description='Height of images in pixels.If set to 0, y dimension of a radiance'
         ' view will be used.',
         default=0
     )
@@ -61,13 +61,12 @@ class ModelImages(Function):
     )
 
     config_path = Inputs.path(
-        description='File path to the config json file which can be used to mount'
-        'simulation data on HBJSON.',
+        description='File path to the config json file to load additional simulation data.',
         path='config.json',
         optional=True
     )
 
-    @ command
+    @command
     def model_images(self):
         return 'honeybee-vtk export model-images input.hbjson --folder target_folder'\
             ' --config config.json --image-type {{self.image_type}}'\
@@ -153,11 +152,11 @@ class GridImages(Function):
         spec={'type': 'string', 'enum': ['full-match', 'no-full-match']}
     )
 
-    @ command
+    @command
     def grid_images(self):
         return 'honeybee-vtk export model-images input.hbjson --folder target_folder'\
             ' --config config.json --image-type {{self.image_type}}'\
-            '--image-width {{self.image_width}} --image-height {{self.image_height}}'\
+            ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
             ' --background-color {{self.background_color}} --grid-options'\
             ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
             ' --grids-filter {{self.grids_filter}} --{{self.full_match}}'
@@ -223,12 +222,12 @@ class TimeStepImages(Function):
         default=0
     )
 
-    @ command
+    @command
     def time_step_images(self):
         return 'honeybee-vtk export timestep-images input.hbjson --folder target_folder'\
             ' --config config.json --time-step-file time_step_data.json'\
             ' --grids-filter {{self.grids_filter}} --{{self.full_match}}'\
-            '--image-width {{self.image_width}} --image-height {{self.image_height}}'\
+            ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
