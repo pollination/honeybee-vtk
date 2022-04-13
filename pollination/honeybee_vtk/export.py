@@ -60,6 +60,16 @@ class ModelImages(Function):
               'enum': ['shaded', 'surface', 'surfacewithedges', 'wireframe', 'points']}
     )
 
+    triangle_angle = Inputs.int(
+        description='Set the internal angle of the triangles in case'
+        ' radial-grid is selected from grid options.', default=45
+    )
+
+    triangle_radius = Inputs.float(
+        description='Set the radial height of the triangles in meters in case'
+        ' radial-grid is selected from grid options.', default=1.0
+    )
+
     config_path = Inputs.path(
         description='File path to the config json file to load additional simulation data.',
         path='config.json',
@@ -74,7 +84,9 @@ class ModelImages(Function):
             ' --image-height {{self.image_height}}'\
             ' --background-color {{self.background_color}}'\
             ' --model-display-mode {{self.model_display_mode}} --grid-options'\
-            ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'
+            ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
+            '--triangle-angle {{self.triangle_angle}}' \
+            ' --triangle-radius {{self.triangle_radius}}'\
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
@@ -117,11 +129,11 @@ class GridImages(Function):
     )
 
     grid_options = Inputs.str(
-        description='Export sensor grids as either points or meshes.'
+        description='Export sensor grids as either points, meshes, or radial-grids.'
         ' Choose from: ignore, points, meshes. Choosing ignore will not load grids.',
         default='ignore',
         spec={'type': 'string',
-              'enum': ['ignore', 'points', 'meshes']}
+              'enum': ['ignore', 'points', 'meshes', 'radial-grid']}
     )
 
     grid_display_mode = Inputs.str(

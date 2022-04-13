@@ -32,11 +32,21 @@ class Translate(Function):
     )
 
     grid_options = Inputs.str(
-        description='Export sensor grids as either points or meshes.'
+        description='Export sensor grids as either points, meshes or radial-grids.'
         ' Choose from: ignore, points, meshes. Choosing ignore will not load grids.',
         default='ignore',
         spec={'type': 'string',
-              'enum': ['ignore', 'points', 'meshes']}
+              'enum': ['ignore', 'points', 'meshes', 'radial-grid']}
+    )
+
+    triangle_angle = Inputs.int(
+        description='Set the internal angle of the triangles in case'
+        ' radial-grid is selected from grid options.', default=45
+    )
+
+    triangle_radius = Inputs.float(
+        description='Set the radial height of the triangles in meters in case'
+        ' radial-grid is selected from grid options.', default=1.0
     )
 
     data = Inputs.folder(
@@ -48,7 +58,9 @@ class Translate(Function):
     def translate_model(self):
         return 'honeybee-vtk translate --name {{self.name}} --file-type' \
             ' {{self.file_type}} --model-display-mode {{self.display_mode}}' \
-            ' --grid-options {{self.grid_options}}' \
+            ' --grid-options {{self.grid_options}} '\
+            '--triangle-angle {{self.triangle_angle}}' \
+            ' --triangle-radius {{self.triangle_radius}}'\
             ' --config input_data/config.json input.hbjson --folder target_folder'
 
     output_file = Outputs.file(
