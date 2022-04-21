@@ -16,7 +16,7 @@ class TimeStepData(Function):
     periods_file = Inputs.file(
         description='A file that contains the periods and color associated with each'
         ' period.',
-        path='peridos.json'
+        path='periods.json'
     )
 
     name = Inputs.str(
