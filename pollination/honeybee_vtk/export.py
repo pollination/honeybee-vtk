@@ -151,7 +151,7 @@ class GridImages(Function):
         optional=True
     )
 
-    grids_filter = Inputs.str(
+    grid_filter = Inputs.str(
         description='Filter for the grids to be exported using a regex pattern.'
         'If not set, all grids will be exported.',
         default='*',
@@ -164,14 +164,19 @@ class GridImages(Function):
         spec={'type': 'string', 'enum': ['full-match', 'no-full-match']}
     )
 
+    results_folder = Inputs.folder(
+        description='Path to results folder for visualization.',
+        path='results'
+    )
+
     @command
     def grid_images(self):
-        return 'honeybee-vtk export model-images input.hbjson --folder target_folder'\
+        return 'honeybee-vtk export grid-images input.hbjson --folder target_folder'\
             ' --config config.json --image-type {{self.image_type}}'\
             ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
             ' --background-color {{self.background_color}} --grid-options'\
             ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
-            ' --grids-filter {{self.grids_filter}} --{{self.full_match}}'
+            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
@@ -194,13 +199,18 @@ class TimeStepImages(Function):
         path='config.json',
     )
 
+    results_folder = Inputs.folder(
+        description='Path to results folder for visualization.',
+        path='results'
+    )
+
     time_step_path = Inputs.path(
         description='File path to the time step data json file that has the information'
         ' needed to export time step images.',
         path='time_step_data.json',
     )
 
-    grids_filter = Inputs.str(
+    grid_filter = Inputs.str(
         description='Filter for the grids to be exported using a regex pattern.'
         'If not set, all grids will be exported.',
         default='*',
@@ -236,9 +246,9 @@ class TimeStepImages(Function):
 
     @command
     def time_step_images(self):
-        return 'honeybee-vtk export timestep-images input.hbjson --folder target_folder'\
+        return 'honeybee-vtk export time-step-images input.hbjson --folder target_folder'\
             ' --config config.json --time-step-file time_step_data.json'\
-            ' --grids-filter {{self.grids_filter}} --{{self.full_match}}'\
+            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}'\
             ' --{{self.label_images}}'\
             ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
 
