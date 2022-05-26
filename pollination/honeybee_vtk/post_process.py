@@ -41,7 +41,7 @@ class Gif(Function):
     @command
     def gif(self):
         return 'honeybee-vtk post-process gif ./time_step_images --folder target_folder'\
-            ' --transparency {{self.transparency}} --duration {{self.duration}}'\
+            ' --{{self.transparency}} --duration {{self.duration}}'\
             ' --loop-count {{self.loop_count}} --linger-last-frame'\
             ' {{self.linger_last_frame}}'
 
@@ -69,7 +69,7 @@ class TransparentImages(Function):
     )
 
     @command
-    def gif(self):
+    def create_transparent_images(self):
         return 'honeybee-vtk post-process transparent-images ./time_step_images'\
             ' --folder target_folder --transparency {{self.transparency}}'
 

@@ -19,18 +19,13 @@ class TimeStepData(Function):
         path='periods.json'
     )
 
-    name = Inputs.str(
-        description='Name of the time step data file to be written.',
-        default='time_step_data',
-    )
-
     @command
     def time_step_data(self):
-        return 'honeybee-vtk config time-step-data time-step-data'\
+        return 'honeybee-vtk config time-step-data'\
             ' --time-step-file time_step_file.txt --periods-file periods.json'\
-            ' --file-name {{self.name}} --folder target_folder'
+            ' --file-name _time_step_data'
 
     output_file = Outputs.file(
         description='Created file.',
-        path='target_folder/{{self.name}}.json'
+        path='_time_step_data.json'
     )
