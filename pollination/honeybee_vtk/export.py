@@ -123,6 +123,10 @@ class GridImages(Function):
         default=0
     )
 
+    image_scale = Inputs.int(
+        description='Scale of the image. Default is set to 1.', default=1
+    )
+
     background_color = Inputs.str(
         description='Background color for the images as a string of rgb values.',
         default='255 255 255'
@@ -174,6 +178,7 @@ class GridImages(Function):
         return 'honeybee-vtk export grid-images input.hbjson --folder target_folder'\
             ' --config config.json --image-type {{self.image_type}}'\
             ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
+            ' --image-scale {{self.image_scale}}' \
             ' --background-color {{self.background_color}} --grid-options'\
             ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
             ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}'
