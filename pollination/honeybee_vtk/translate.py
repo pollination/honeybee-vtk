@@ -11,11 +11,6 @@ class Translate(Function):
         path='input.hbjson'
     )
 
-    name = Inputs.str(
-        description='Name of the zip file.',
-        default='model'
-    )
-
     file_type = Inputs.str(
         description='Choose the type of files to export from: vtkjs, vtp, vtk.',
         default='vtkjs',
@@ -64,7 +59,7 @@ class Translate(Function):
 
     @command
     def translate_model(self):
-        return 'honeybee-vtk translate --name {{self.name}} --file-type' \
+        return 'honeybee-vtk translate --name model --file-type' \
             ' {{self.file_type}} --model-display-mode {{self.model_display_mode}}' \
             ' --grid-display-mode {{self.grid_display_mode}}' \
             ' --grid-options {{self.grid_options}}'\
@@ -74,5 +69,5 @@ class Translate(Function):
 
     output_file = Outputs.file(
         description='Created file.',
-        path='target_folder/{{self.name}}.{{self.file_type}}'
+        path='target_folder/model.{{self.file_type}}'
     )
