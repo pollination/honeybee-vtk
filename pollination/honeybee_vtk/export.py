@@ -124,7 +124,7 @@ class GridImages(Function):
     )
 
     image_scale = Inputs.int(
-        description='Scale of the image. Default is set to 1.', default=1
+        description='An integer value as a scale factor. Defaults to 1.', default=1
     )
 
     background_color = Inputs.str(
@@ -249,13 +249,19 @@ class TimeStepImages(Function):
         default=0
     )
 
+    image_scale = Inputs.int(
+        description='An integer value as a scale factor. Defaults to 1.', default=1
+    )
+
     @command
     def time_step_images(self):
-        return 'honeybee-vtk export time-step-images input.hbjson --folder target_folder'\
-            ' --config config.json --time-step-file time_step_data.json'\
-            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}'\
+        return 'honeybee-vtk export time-step-images input.hbjson ' \
+            '--folder target_folder' \
+            ' --config config.json --time-step-file time_step_data.json' \
+            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}' \
             ' --{{self.label_images}}'\
-            ' --image-width {{self.image_width}} --image-height {{self.image_height}}'\
+            ' --image-width {{self.image_width}} --image-height {{self.image_height}}' \
+            ' --image-scale {{self.image_scale}}'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
