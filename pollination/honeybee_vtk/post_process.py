@@ -34,8 +34,13 @@ class Gif(Function):
 
     linger_last_frame = Inputs.int(
         description='The multiple of duration to linger the last frame of the GIF.'
-        ' Defaults to 3.',
-        default=3
+        ' Defaults to 2.',
+        default=2
+    )
+
+    text_height = Inputs.int(
+        description='Text heights in pixels.Defaults to 20.',
+        default=20
     )
 
     @command
@@ -43,7 +48,7 @@ class Gif(Function):
         return 'honeybee-vtk post-process gif ./time_step_images --folder target_folder'\
             ' --{{self.transparency}} --duration {{self.duration}}'\
             ' --loop-count {{self.loop_count}} --linger-last-frame'\
-            ' {{self.linger_last_frame}}'
+            ' {{self.linger_last_frame}} --text-height {{self.text_height}}'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
