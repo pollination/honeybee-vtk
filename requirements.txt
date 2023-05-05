@@ -1,3 +1,2 @@
 pollination-dsl==0.14.1
-honeybee-vtk==0.38.9
-queenbee==1.26.7
+honeybee-vtk==0.39

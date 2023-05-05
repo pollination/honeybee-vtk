@@ -173,6 +173,12 @@ class GridImages(Function):
         path='results'
     )
 
+    background = Inputs.str(
+        description='A flag to indicate if the background should be kept or removed.',
+        default='keep',
+        spec={'type': 'string', 'enum': ['keep', 'remove']}
+    )
+
     @command
     def grid_images(self):
         return 'honeybee-vtk export grid-images input.hbjson --folder target_folder'\
@@ -181,7 +187,8 @@ class GridImages(Function):
             ' --image-scale {{self.image_scale}}' \
             ' --background-color {{self.background_color}} --grid-options'\
             ' {{self.grid_options}} --grid-display-mode {{self.grid_display_mode}}'\
-            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}'
+            ' --grid-filter "{{self.grid_filter}}" --{{self.full_match}}' \
+            ' --{{self.background}}-background'
 
     images = Outputs.folder(
         description='Folder location where the images are exported.',
